@@ -14,13 +14,27 @@ export class App extends Component {
         }
     }
 
+    // assignPlanet(url){
+
+    // }
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('https://swapi.py4e.com/api/people/')
             .then(response => response.json())
             .then(users => {
-                this.setState({ robots: users });
+                this.setState({ robots: users.results });
+                for(let i = 0; i < this.state.robots.length; i++){
+                    const url = this.state.robots[i].homeworld;
+                    fetch(url).then(response => response.json()).then(planet => {
+                        //https://stackoverflow.com/questions/29537299/react-how-to-update-state-item1-in-state-using-setstate
+                        let robots = [...this.state.robots];
+                        let robot = {...robots[i]};
+                        robot.planetName = planet.name;
+                        robots[i] = robot;
+                        this.setState({robots: robots});
+                    })
+                }
             });
-
+            
     }
 
     onSearchChange = (event) => {
@@ -34,7 +48,7 @@ export class App extends Component {
         })
 
         return !robots.length ?
-            <h1 className='tc'>Loading Robots...</h1> :
+            <h1 className='tc'>No robots to show :(</h1> :
             (
                 <div className='tc'>
                     <h1 className='tc f1'>RoboFriends</h1>

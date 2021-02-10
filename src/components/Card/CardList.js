@@ -3,18 +3,17 @@ import Card from './Card';
 
 const CardList = ({ robots }) => {
 
-    // if(true){
-    //     throw new Error('nooo!');
-    // }
     return (
         <div>
             { robots.map((user, i) => {
                 return (
                     <Card
-                        key={robots[i].id}
-                        id={robots[i].id}
+                        key={robots[i].name}
+                        id={robots[i].name}
                         name={robots[i].name}
-                        email={robots[i].email}
+                        planet={ robots[i].planetName }
+                        // planet={ 'test'}
+
                         />
                     );
                 })

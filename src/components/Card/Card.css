@@ -1,0 +1,28 @@
+
+
+h2, p{
+    /* text-transform: capitalize; */
+}
+/* 
+img {
+    object-fit: cover;
+  } */
+
+
+.img-container {
+    overflow: hidden;
+    height: 200px;
+    max-height: 200px;
+    width: 200px;
+    position: relative;
+    margin: auto;
+}
+
+.img {
+     display: block;
+     width: 100%;
+     height: auto;
+     position: absolute;
+     object-fit: cover;
+     bottom: 0;
+ }
